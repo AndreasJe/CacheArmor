@@ -1,0 +1,15 @@
+/* CacheArmor settings screen. */
+.cachearmor-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 8px 0 12px; }
+.cachearmor-toolbar input[type=search] { min-width: 260px; }
+.cachearmor-count { color: #646970; }
+#cachearmor-routes .cachearmor-col-cache { width: 52px; }
+#cachearmor-routes .cachearmor-col-access { width: 150px; }
+#cachearmor-routes .cachearmor-col-query { width: 240px; }
+#cachearmor-routes .cachearmor-col-ttl { width: 160px; }
+/* Room for six digits plus the spinner and the presets arrow. */
+.cachearmor .cachearmor-ttl { width: 8em; }
+#cachearmor-routes .cachearmor-ns td { background: #f0f0f1; font-weight: 600; }
+#cachearmor-routes label { cursor: pointer; }
+#cachearmor-routes input[type=text] { width: 100%; }
+.cachearmor-blocked { color: #b32d2e; }
+.cachearmor-auth { color: #996800; }

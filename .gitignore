@@ -1,0 +1,12 @@
+# Build output — the distributable is generated, never committed.
+/dist/
+
+# Local tooling
+/vendor/
+/.phpcs.cache
+/phpcs.xml
+/composer.lock
+
+# OS noise
+.DS_Store
+Thumbs.db
