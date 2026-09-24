@@ -477,6 +477,8 @@ final class CacheArmor_Admin {
 		echo '<th scope="col" class="cachearmor-col-ttl">' . esc_html__( 'Lifetime (s)', 'cachearmor' ) . '</th>';
 		echo '</tr></thead><tbody>';
 
+		/* translators: %s: an example query string, such as categories=42. */
+		$example    = sprintf( __( 'e.g. %s', 'cachearmor' ), 'categories=42' );
 		$current_ns = null;
 		foreach ( $routes as $route => $info ) {
 			if ( $info['namespace'] !== $current_ns ) {
@@ -510,7 +512,7 @@ final class CacheArmor_Admin {
 
 			/* translators: %s: REST route, such as /wp/v2/pages. */
 			$query_label = sprintf( __( 'Query filter for %s', 'cachearmor' ), $route );
-			echo '<td><input type="text" name="' . esc_attr( $field ) . '[query]" value="' . esc_attr( isset( $conf['query'] ) ? $conf['query'] : '' ) . '" placeholder="categories=42" aria-label="' . esc_attr( $query_label ) . '"></td>';
+			echo '<td><input type="text" name="' . esc_attr( $field ) . '[query]" value="' . esc_attr( isset( $conf['query'] ) ? $conf['query'] : '' ) . '" placeholder="' . esc_attr( $example ) . '" aria-label="' . esc_attr( $query_label ) . '"></td>';
 
 			/* translators: %s: REST route, such as /wp/v2/pages. */
 			$ttl_label = sprintf( __( 'Lifetime in seconds for %s', 'cachearmor' ), $route );

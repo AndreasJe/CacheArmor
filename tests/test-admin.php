@@ -105,6 +105,7 @@ check( 'saved route shows as enabled', 1 === preg_match( '#data-route="/wp/v2/pa
 check( 'last-cleared line shown', false !== strpos( $html, 'Last cleared 3 mins ago' ) );
 check( 'post title escaped', false === strpos( $html, '<b>world</b>' ) && false !== strpos( $html, '&lt;b&gt;world&lt;/b&gt;' ) );
 check( 'usage against the limit shown', false !== strpos( $html, 'of 1,000' ) );
+check( 'query placeholder reads as an example', false !== strpos( $html, 'placeholder="e.g. categories=42"' ) && false === strpos( $html, 'placeholder="categories=42"' ) );
 preg_match_all( '/<input type="number"[^>]*>/', $html, $numbers );
 $narrow = array_filter( $numbers[0], function ( $i ) { return false === strpos( $i, 'class="cachearmor-ttl"' ); } );
 check( 'every lifetime field uses the wide cachearmor-ttl class', ! empty( $numbers[0] ) && ! $narrow, count( $numbers[0] ) . ' fields, ' . count( $narrow ) . ' narrow' );
