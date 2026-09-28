@@ -1,15 +1,183 @@
 /* CacheArmor settings screen. */
-.cachearmor-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 8px 0 12px; }
+.cachearmor {
+	--ca-border: #dcdcde;
+	--ca-muted: #646970;
+	--ca-text: #1d2327;
+	--ca-blue: #2271b1;
+	--ca-row-on: #f0f6fc;
+	--ca-group: #f6f7f7;
+	--ca-red: #b32d2e;
+	--ca-red-bg: #fcf0f1;
+	--ca-amber: #996800;
+	--ca-amber-bg: #fcf9e8;
+	--ca-green: #008a20;
+	--ca-green-bg: #edfaef;
+	--ca-accent: #c77c02;
+	max-width: 1640px;
+	padding-bottom: 0;
+}
+.cachearmor [hidden] { display: none !important; }
+.cachearmor-icon { display: inline-flex; align-items: center; line-height: 0; }
+.cachearmor-icon svg { display: block; }
+
+/* Title bar */
+.cachearmor-header {
+	display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px;
+	background: #fff; border: 1px solid var(--ca-border);
+	padding: 16px 20px; margin: 20px 0 0;
+}
+.cachearmor-logo {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 44px; height: 44px; border-radius: 8px; background: var(--ca-text);
+}
+.cachearmor .cachearmor-title { font-size: 26px; line-height: 1.2; font-weight: 400; margin: 0; padding: 0; }
+.cachearmor-title span { color: var(--ca-accent); }
+.cachearmor-version { color: var(--ca-muted); }
+.cachearmor-pill {
+	display: inline-flex; align-items: center; gap: 6px;
+	padding: 3px 12px; border-radius: 999px; font-weight: 500;
+	border: 1px solid #b8e6bf; background: var(--ca-green-bg); color: var(--ca-green);
+}
+.cachearmor-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.cachearmor-pill.is-paused { border-color: #f5e6ab; background: var(--ca-amber-bg); color: var(--ca-amber); }
+.cachearmor-pill.is-idle { border-color: var(--ca-border); background: var(--ca-group); color: var(--ca-muted); }
+.cachearmor-header-actions { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.cachearmor-header-actions form { margin: 0; }
+.cachearmor .cachearmor-button-outline { border-color: var(--ca-blue); color: var(--ca-blue); background: #fff; }
+.cachearmor .cachearmor-button-outline:hover { background: var(--ca-row-on); }
+.cachearmor .wp-header-end { margin: 0; }
+
+/* Status cards */
+.cachearmor-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 20px 0; }
+.cachearmor-card { background: #fff; border: 1px solid var(--ca-border); padding: 18px 20px; min-width: 0; }
+.cachearmor .cachearmor-card h2 { font-size: 13px; font-weight: 400; color: var(--ca-muted); margin: 0 0 8px; padding: 0; }
+.cachearmor-figure { margin: 0; overflow-wrap: anywhere; }
+.cachearmor-figure strong { font-size: 24px; line-height: 1.3; font-weight: 500; color: var(--ca-text); }
+.cachearmor-figure span, .cachearmor-sub { color: var(--ca-muted); }
+.cachearmor .cachearmor-sub { margin: 10px 0 0; overflow-wrap: anywhere; }
+.cachearmor-meter { height: 5px; background: #f0f0f1; border-radius: 3px; margin-top: 12px; overflow: hidden; }
+.cachearmor-meter span { display: block; height: 100%; background: var(--ca-blue); border-radius: 3px; }
+.cachearmor-meter.is-full span { background: var(--ca-red); }
+
+/* Tabs and panels */
+.cachearmor .cachearmor-tabs { margin: 0 0 16px; padding-top: 0; }
+.cachearmor .cachearmor-tabs .nav-tab { margin-left: 0; margin-right: 6px; }
+.cachearmor.is-js .cachearmor-panel:not(.is-active) { display: none; }
+.cachearmor.is-js .cachearmor-panel-title { display: none; }
+.cachearmor .form-table { background: #fff; border: 1px solid var(--ca-border); margin-top: 0; }
+.cachearmor .form-table th { padding-left: 20px; }
+
+/* Filter bar */
+.cachearmor-toolbar { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin: 0 0 16px; }
 .cachearmor-toolbar input[type=search] { min-width: 260px; }
-.cachearmor-count { color: #646970; }
-#cachearmor-routes .cachearmor-col-cache { width: 52px; }
-#cachearmor-routes .cachearmor-col-access { width: 150px; }
-#cachearmor-routes .cachearmor-col-query { width: 240px; }
-#cachearmor-routes .cachearmor-col-ttl { width: 160px; }
-/* Room for six digits plus the spinner and the presets arrow. */
-.cachearmor .cachearmor-ttl { width: 8em; }
-#cachearmor-routes .cachearmor-ns td { background: #f0f0f1; font-weight: 600; }
-#cachearmor-routes label { cursor: pointer; }
-#cachearmor-routes input[type=text] { width: 100%; }
-.cachearmor-blocked { color: #b32d2e; }
-.cachearmor-auth { color: #996800; }
+.cachearmor-count { color: var(--ca-muted); margin-left: auto; }
+
+/* Route table */
+.cachearmor-table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--ca-border); }
+.cachearmor-table th, .cachearmor-table td { text-align: left; padding: 10px 12px; vertical-align: middle; }
+.cachearmor-table thead th { font-weight: 500; border-bottom: 1px solid var(--ca-border); padding-top: 14px; padding-bottom: 14px; }
+.cachearmor-table .cachearmor-col-cache { width: 72px; padding-left: 18px; }
+.cachearmor-table .cachearmor-col-access { width: 16%; }
+.cachearmor-table .cachearmor-col-query { width: 20%; }
+.cachearmor-table .cachearmor-col-ttl { width: 14%; }
+.cachearmor-table tbody td:first-child { padding-left: 18px; }
+.cachearmor-row + .cachearmor-row td { border-top: 1px solid #f0f0f1; }
+/* One row height for every row, whatever the access badge or fields. */
+.cachearmor-table .cachearmor-row td { height: 52px; padding-top: 0; padding-bottom: 0; line-height: 20px; }
+.cachearmor-row .cachearmor-access, .cachearmor-row .cachearmor-badge, .cachearmor-row .cachearmor-switch, .cachearmor-row code { vertical-align: middle; }
+.cachearmor-row .cachearmor-badge { line-height: 20px; }
+.cachearmor-row.is-enabled td { background: var(--ca-row-on); }
+.cachearmor-row code { background: #f0f0f1; padding: 3px 8px; border-radius: 2px; font-size: 13px; }
+.cachearmor-row label { cursor: pointer; }
+.cachearmor-row input[type=text] { width: 100%; }
+.cachearmor-row.is-blocked .cachearmor-icon-lock { color: #a7aaad; margin-left: 4px; }
+
+/* Namespace group header: fixed-width name column so every count lines up. */
+.cachearmor-ns th { background: var(--ca-group); font-weight: 400; border-top: 1px solid var(--ca-border); border-bottom: 1px solid var(--ca-border); padding: 0; }
+.cachearmor-ns-toggle {
+	display: flex; align-items: center; gap: 10px; width: 100%; min-height: 40px;
+	padding: 0 12px 0 18px; margin: 0; box-sizing: border-box;
+	background: none; border: 0; cursor: pointer; text-align: left;
+	font: inherit; font-size: 14px; line-height: 20px; color: var(--ca-text);
+}
+.cachearmor-ns-toggle:hover { background: #eef0f1; }
+.cachearmor-ns-toggle .cachearmor-icon { flex: none; width: 16px; transition: transform .15s; }
+.cachearmor-ns-toggle[aria-expanded=false] .cachearmor-icon { transform: rotate(-90deg); }
+.cachearmor-ns-toggle:focus-visible { outline: 2px solid var(--ca-blue); outline-offset: -2px; }
+.cachearmor-ns-name { flex: none; min-width: 11em; font-weight: 600; }
+.cachearmor-ns-count { color: var(--ca-muted); font-size: 13px; }
+.cachearmor-group.is-collapsed .cachearmor-row { display: none; }
+
+/* Access column */
+.cachearmor-access { display: inline-flex; align-items: center; gap: 6px; color: #50575e; }
+.cachearmor-badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 3px; }
+.cachearmor-badge.is-blocked { background: var(--ca-red-bg); color: var(--ca-red); }
+.cachearmor-badge.is-check { background: var(--ca-amber-bg); color: var(--ca-amber); }
+.cachearmor-reason { color: #50575e; }
+
+/* Toggle switch: a real checkbox, restyled. */
+.cachearmor-switch { position: relative; display: inline-block; width: 36px; height: 20px; vertical-align: middle; }
+.cachearmor-switch input[type=checkbox] {
+	position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; z-index: 1;
+}
+.cachearmor-track {
+	position: absolute; inset: 0; border-radius: 999px; border: 1px solid #8c8f94; background: #fff; transition: background .15s, border-color .15s;
+}
+.cachearmor-track::after {
+	content: ""; position: absolute; top: 3px; left: 3px; width: 12px; height: 12px; border-radius: 50%; background: #8c8f94; transition: transform .15s, background .15s;
+}
+.cachearmor-switch input:checked + .cachearmor-track { background: var(--ca-blue); border-color: var(--ca-blue); }
+.cachearmor-switch input:checked + .cachearmor-track::after { background: #fff; transform: translateX(16px); }
+.cachearmor-switch input:focus-visible + .cachearmor-track { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--ca-blue); }
+.cachearmor-switch-label { display: inline-flex; align-items: center; gap: 8px; }
+
+/* Lifetime */
+.cachearmor-ttl-wrap { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
+.cachearmor .cachearmor-ttl { width: 7em; }
+.cachearmor-ttl-label { color: #50575e; }
+
+/* Query and lifetime only matter for enabled routes: with the script
+   running, disabled rows show a dash instead of the fields. */
+.cachearmor-off { display: none; color: #a7aaad; }
+.cachearmor.is-js .cachearmor-row:not(.is-enabled) .cachearmor-field { display: none; }
+.cachearmor.is-js .cachearmor-row:not(.is-enabled) .cachearmor-off { display: inline; }
+
+/* Callout under the table */
+.cachearmor-callout { background: #fff; border: 1px solid var(--ca-border); border-left: 4px solid #72aee6; padding: 4px 20px; margin: 24px 0; }
+.cachearmor-callout p { margin: 10px 0; }
+
+/* Help */
+.cachearmor-help { background: #fff; border: 1px solid var(--ca-border); padding: 8px 24px 16px; max-width: 900px; }
+.cachearmor-help h3 { margin: 20px 0 8px; }
+.cachearmor-filters dt { margin-top: 10px; }
+.cachearmor-filters dd { margin: 4px 0 0 0; color: #50575e; }
+
+/* Sticky save bar */
+.cachearmor-savebar {
+	position: sticky; bottom: 0; z-index: 10;
+	display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
+	margin: 32px -20px 0 -22px; padding: 14px 20px 14px 22px;
+	background: #fff; border-top: 1px solid var(--ca-border);
+}
+.cachearmor-unsaved { display: inline-flex; align-items: center; gap: 10px; }
+.cachearmor-unsaved[hidden] { display: none; }
+.cachearmor-savebar-note { color: var(--ca-muted); }
+.cachearmor-savebar-actions { margin-left: auto; display: flex; gap: 12px; }
+.cachearmor-savebar-actions .button { min-height: 36px; padding: 0 18px; }
+
+@media (max-width: 1100px) {
+	.cachearmor-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 782px) {
+	.cachearmor-cards { grid-template-columns: minmax(0, 1fr); }
+	.cachearmor-header-actions { margin-left: 0; width: 100%; justify-content: space-between; }
+	.cachearmor-toolbar input[type=search] { min-width: 0; width: 100%; }
+	.cachearmor-count { margin-left: 0; }
+	.cachearmor-table thead { display: none; }
+	.cachearmor-table, .cachearmor-table tbody, .cachearmor-table tr { display: block; }
+	.cachearmor-table tr.cachearmor-row { padding: 8px 0; }
+	.cachearmor-table .cachearmor-row td { display: block; height: auto; padding: 4px 12px 4px 18px; border: 0 !important; }
+	.cachearmor-row input[type=text] { box-sizing: border-box; }
+	.cachearmor-ns th { display: block; }
+	.cachearmor-savebar { margin-left: -10px; margin-right: -10px; }
+}

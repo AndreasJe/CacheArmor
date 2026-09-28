@@ -4,7 +4,7 @@ Tags: rest-api, cache, performance, api
 Requires at least: 5.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ This plugin is built around that moment.
 
 Caching the wrong endpoint can serve one visitor's data to another. So the plugin does nothing until you enable a route yourself.
 
-The settings screen lists every REST route registered on your site, including routes added by other plugins and your own custom endpoints, with a filter to find the ones you want. Each is marked "Permission check" or "No permission check" so you can see which ones restrict access before you decide.
+The settings screen lists every REST route registered on your site, including routes added by other plugins and your own custom endpoints, with a filter to find the ones you want. Each is marked "Public" or "Permission check" so you can see which ones restrict access before you decide.
 
 **A worked example**
 
@@ -42,7 +42,7 @@ A collection request that renders page-builder content for dozens of posts can t
 
 1. Upload the plugin to `/wp-content/plugins/cachearmor/` or install it through the Plugins screen.
 2. Activate the plugin.
-3. Go to **Settings > CacheArmor** and tick the routes you want cached. Until you do, nothing is cached.
+3. Go to **Settings > CacheArmor** and switch on the routes you want cached. Until you do, nothing is cached.
 
 Optionally set a query filter per route, for example `categories=42`, so only matching requests are cached. Leave it empty to cache every variation of that route.
 
@@ -67,11 +67,11 @@ By design. Caching the wrong endpoint can serve one visitor's data to another, s
 
 Yes. The settings screen lists all registered REST routes, including those added by other plugins and your own code, so custom endpoints appear alongside the core ones. Routes with placeholders, such as a single post by ID, cannot be selected there yet; add those with the `cachearmor_rules` filter.
 
-= What do "Permission check" and "No permission check" mean? =
+= What do "Public" and "Permission check" mean? =
 
 A route with a permission check may give different responses to different visitors, so cache it only if you are certain every anonymous visitor receives the same response.
 
-"No permission check" means anyone may call the route. It does not guarantee that every visitor gets the same response: a route can still vary by cookie, session or location. The same care applies.
+"Public" means anyone may call the route. It does not guarantee that every visitor gets the same response: a route can still vary by cookie, session or location. The same care applies.
 
 = How do I know whether a response came from cache? =
 
@@ -79,7 +79,7 @@ Responses carry an `X-CacheArmor` header with a value of HIT, STALE or MISS, plu
 
 = How do I pause caching? =
 
-Tick **Pause caching** under Settings > CacheArmor. To pause it from code instead, add `define( 'CACHEARMOR_DISABLE', true );` to `wp-config.php`.
+Turn on **Pause caching** on the Settings tab under Settings > CacheArmor. To pause it from code instead, add `define( 'CACHEARMOR_DISABLE', true );` to `wp-config.php`.
 
 = How do I clear the cache? =
 
@@ -118,6 +118,14 @@ Yes. It operates inside the REST dispatch cycle and does not interact with page 
 The source lives at the URL given in the Plugin URI field. The distributed plugin contains the complete, unminified source; there is no build step.
 
 == Changelog ==
+
+= 1.4.0 =
+* Redesigned settings screen: status cards, Routes, Settings and Help tabs, toggle switches, routes grouped by namespace, and an access-type filter.
+* Unsaved changes are counted in a sticky save bar, with a Discard button and a warning before leaving the page.
+* Lifetimes are shown in minutes, hours or days next to each field.
+* Routes are grouped by their registered namespace, such as wp/v2 or wc/store/v1.
+* "No permission check" is now labelled "Public".
+* Shield icon on the "Clear REST cache" admin bar item.
 
 = 1.3.0 =
 * First public release.

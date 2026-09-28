@@ -3,7 +3,7 @@
  * Plugin Name:       CacheArmor
  * Plugin URI:        https://github.com/AndreasJe/cachearmor
  * Description:       Caches expensive read-only WP REST API responses to disk, with stale-while-revalidate and stampede protection. Choose which routes to cache on the settings screen.
- * Version:           1.3.0
+ * Version:           1.4.0
  * Requires at least: 5.6
  * Requires PHP:      7.4
  * Author:            Andreas Jensen
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( defined( 'CACHEARMOR_VERSION' ) ) {
 	return;
 }
-define( 'CACHEARMOR_VERSION', '1.3.0' );
+define( 'CACHEARMOR_VERSION', '1.4.0' );
 define( 'CACHEARMOR_FILE', __FILE__ );
 define( 'CACHEARMOR_PATH', plugin_dir_path( __FILE__ ) );
 
@@ -917,7 +917,7 @@ final class CacheArmor {
 		$bar->add_node(
 			array(
 				'id'    => 'cachearmor-purge',
-				'title' => esc_html__( 'Clear REST cache', 'cachearmor' ),
+				'title' => '<span class="ab-icon dashicons-shield" aria-hidden="true"></span><span class="ab-label">' . esc_html__( 'Clear REST cache', 'cachearmor' ) . '</span>',
 				'href'  => wp_nonce_url( admin_url( 'admin-post.php?action=cachearmor_purge' ), 'cachearmor_purge' ),
 			)
 		);
